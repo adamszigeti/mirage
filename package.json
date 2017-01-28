@@ -1,0 +1,19 @@
+{
+  "name": "reflection-js",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "git@gitlab.com:adam.szigeti/reflection-js.git",
+  "author": "Ádám Szigeti <adam.szigeti@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "tests": "mocha -r ts-node/register tests/**/*Test.ts"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.38",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "ts-node": "^2.0.0",
+    "typescript": "^2.1.5"
+  }
+}
