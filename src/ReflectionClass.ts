@@ -1,3 +1,5 @@
+import {ReflectionMethod} from "./ReflectionMethod";
+
 export class ReflectionClass
 {
     protected type;
@@ -25,7 +27,7 @@ export class ReflectionClass
      * 
      * @returns ReflectionMethod[]
      */
-    public methods() : string[]
+    public methods() : ReflectionMethod[]
     {
         let methods = [];
         
@@ -36,7 +38,9 @@ export class ReflectionClass
             }));
         });
 
-        return [...new Set(methods)];
+        return [...new Set(methods)].map(
+            method => new ReflectionMethod(this.subject, method)
+        );
     }
 
     /**

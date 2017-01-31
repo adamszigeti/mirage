@@ -1,5 +1,6 @@
 import {chai, assert} from "../TestCase";
 import {ReflectionClass} from "../../src/ReflectionClass";
+import {ReflectionMethod} from "../../src/ReflectionMethod";
 
 class Subject
 {
@@ -26,6 +27,14 @@ class Person
         this.age = age;
         this.name = name;
     }
+}
+
+function filterMethods(methods: ReflectionMethod[], needle: string) : ReflectionMethod[] {
+    return methods.filter(method => method.name === needle);
+}
+
+function assertContainsMethod(methods, needle) {
+    assert.lengthOf(filterMethods(methods, needle), 1);
 }
 
 describe("ReflectionClass", () => {
@@ -70,8 +79,8 @@ describe("ReflectionClass", () => {
             let methods = reflector.methods();
 
             assert.lengthOf(methods, 2);
-            assert.include(methods, "constructor");
-            assert.include(methods, "doSomethingFunny");
+            assertContainsMethod(methods, "constructor");
+            assertContainsMethod(methods, "doSomethingFunny");
         });
 
         it("Lists ES6 sub- and parent class' methods as well", () => {
@@ -80,7 +89,7 @@ describe("ReflectionClass", () => {
             let methods = reflector.methods();
 
             assert.lengthOf(methods, 3);
-            assert.include(methods, "doAnotherThing");
+            assertContainsMethod(methods, "doAnotherThing");
         });
 
         it("Lists a traditional object's methods", () => {
@@ -93,9 +102,9 @@ describe("ReflectionClass", () => {
             let methods = reflector.methods();
 
             assert.lengthOf(methods, 3);
-            assert.include(methods, "classic");
-            assert.include(methods, "arrowSyntax");
-            assert.include(methods, "newMethodDeclaration");
+            assertContainsMethod(methods, "classic");
+            assertContainsMethod(methods, "arrowSyntax");
+            assertContainsMethod(methods, "newMethodDeclaration");
         });
 
         it("Won't list getters and setters", () => {
