@@ -16,7 +16,40 @@ class SubSubject extends Subject
     public doAnotherThing() {}
 }
 
+class Person
+{
+    public age: number;
+    public name: string;
+
+    constructor(name: string, age: number)
+    {
+        this.age = age;
+        this.name = name;
+    }
+}
+
 describe("ReflectionClass", () => {
+    describe(".construct()", () => {
+        it("Can construct a class with required arguments", () => {
+            let reflector = new ReflectionClass(Person);
+
+            let person = reflector.construct("Adam", 23) as Person;
+
+            assert.equal(person.age, 23);
+            assert.equal(person.name, "Adam");
+            assert.instanceOf(person, Person);
+        });
+        
+        it("Can construct a class without the required arguments", () => {
+            let reflector = new ReflectionClass(Person);
+
+            let person = reflector.construct() as Person;
+
+            assert.equal(person.age, undefined);
+            assert.equal(person.name, undefined);
+            assert.instanceOf(person, Person);
+        });
+    });
 
     describe(".methods()", () => {
         it("Lists methods written in ES6", () => {

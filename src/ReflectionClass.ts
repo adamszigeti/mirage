@@ -1,10 +1,17 @@
 export class ReflectionClass
 {
+    protected type;
     protected subject: Object;
 
     public constructor(subject: any)
     {
+        this.type = subject;
         this.subject = subject instanceof Function ? new subject : subject;
+    }
+
+    public construct(...args) : Object
+    {
+        return new this.type(...args);
     }
 
     /**
