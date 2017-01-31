@@ -30,7 +30,7 @@ class Person
 }
 
 function filterMethods(methods: ReflectionMethod[], needle: string) : ReflectionMethod[] {
-    return methods.filter(method => method.name === needle);
+    return methods.filter(method => method.name() === needle);
 }
 
 function assertContainsMethod(methods, needle) {
