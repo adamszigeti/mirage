@@ -39,7 +39,19 @@ describe("ReflectionClass", () => {
             assert.equal(person.name, "Adam");
             assert.instanceOf(person, Person);
         });
-        
+
+        it("Won't create a new instance from an already constructed subject", () => {
+            try {
+                let reflector = new ReflectionClass(new Person("Doe", 12));
+                let person = reflector.construct("Adam", 23) as Person;
+            }
+            catch (error) {
+                return assert.equal(error.message, "Should not try to (re)construct an instance which already exists!");
+            }
+
+            assert.fail(0, 1, "Failed asserting that an error exception was thrown.");
+        });
+
         it("Can construct a class without the required arguments", () => {
             let reflector = new ReflectionClass(Person);
 

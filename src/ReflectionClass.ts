@@ -9,9 +9,15 @@ export class ReflectionClass
         this.subject = subject instanceof Function ? new subject : subject;
     }
 
+    /**
+     * Creates the subject with the passed arguments.
+     */
     public construct(...args) : Object
     {
-        return new this.type(...args);
+        if (this.type instanceof Function)
+            return new this.type(...args);
+
+        throw new Error("Should not try to (re)construct an instance which already exists!");
     }
 
     /**
