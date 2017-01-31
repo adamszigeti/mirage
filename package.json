@@ -15,5 +15,8 @@
     "mocha": "^3.2.0",
     "ts-node": "^2.0.0",
     "typescript": "^2.1.5"
+  },
+  "dependencies": {
+    "verbal-expressions": "^0.3.0"
   }
 }

@@ -5,6 +5,7 @@
         "noImplicitAny": false,
         "sourceMap": false,
         "declaration": true,
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "lib": ["es2016", "dom"]
     }
 }
