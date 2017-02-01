@@ -10,13 +10,13 @@ describe("ReflectionArgument", () => {
         });
     });
 
-    describe(".isOptional()", () => {
+    describe(".hasDefaultValue()", () => {
         it("Can determine if the argument is optional", () => {
             let required = new ReflectionArgument("person");
             let optional = new ReflectionArgument("person = null");
 
-            assert.isTrue(optional.isOptional());
-            assert.isFalse(required.isOptional());
+            assert.isTrue(optional.hasDefaultValue());
+            assert.isFalse(required.hasDefaultValue());
         });
     });
 });
