@@ -39,4 +39,21 @@ export class ReflectionArgument
     {
         return 1 < this.argument.split("=").length;
     }
+
+    /**
+     * It returns the default value of the argument.
+     */
+    public defaultValue()
+    {
+        let value = this.argument.split("=")[1];
+        
+        if (! value)
+            return undefined;
+
+        value = value.trim();
+        if (value === "null")
+            return null;
+
+        return value.replace(/^["']/, "").replace(/["']$/, "");
+    }
 }

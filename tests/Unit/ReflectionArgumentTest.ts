@@ -19,4 +19,26 @@ describe("ReflectionArgument", () => {
             assert.isFalse(required.hasDefaultValue());
         });
     });
+
+    describe(".defaultValue()", () => {
+        it("Returns 'undefined' if argument has no default value", () => {
+            let arg = new ReflectionArgument("person");
+
+            assert.isUndefined(arg.defaultValue());
+        });
+
+        it("Returns 'null' if argument has null as default value", () => {
+            let arg = new ReflectionArgument("person = null");
+
+            assert.isNull(arg.defaultValue());
+        });
+
+        it("Returns a string without the apostrophes", () => {
+            let arg1 = new ReflectionArgument(`person = "They say: \"Helga's voice is beautiful.\""`);
+            let arg2 = new ReflectionArgument(`person = 'They say: "Helga's voice is beautiful."'`);
+
+            assert.equal(arg1.defaultValue(), `They say: "Helga's voice is beautiful."`);
+            assert.equal(arg2.defaultValue(), `They say: "Helga's voice is beautiful."`);
+        });
+    });
 });
