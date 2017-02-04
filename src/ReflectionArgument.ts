@@ -47,10 +47,10 @@ export class ReflectionArgument
     {
         let value = this.argument.split("=")[1];
         
-        if (! value)
+        value = value ? value.trim() : value;
+        if (! value || value === "undefined")
             return undefined;
 
-        value = value.trim();
         if (value === "null")
             return null;
 
