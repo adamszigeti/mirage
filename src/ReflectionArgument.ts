@@ -46,7 +46,7 @@ export class ReflectionArgument
     public defaultValue()
     {
         let value = this.argument.split("=")[1];
-        
+
         value = value ? value.trim() : value;
         if (! value || value === "undefined")
             return undefined;
@@ -54,6 +54,11 @@ export class ReflectionArgument
         if (value === "null")
             return null;
 
-        return value.replace(/^["']/, "").replace(/["']$/, "");
+        value = value.replace(/^["']/, "").replace(/["']$/, "");
+
+        if (value.startsWith('{'))
+            value = eval(`(${value})`);
+
+        return value;
     }
 }

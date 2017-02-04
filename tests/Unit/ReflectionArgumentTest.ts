@@ -66,5 +66,14 @@ describe.only("ReflectionArgument", () => {
             assert.equal(float.defaultValue(), 1.2);
             assert.equal(integer.defaultValue(), 200);
         });
+
+        it("Returns an object as an object", () => {
+            let argument = new ReflectionArgument(`person = {name:'Adam'}`);
+
+            let value = argument.defaultValue();
+
+            assert.instanceOf(value, Object);
+            assert.propertyVal(value, "name", "Adam");
+        });
     });
 });
