@@ -20,8 +20,8 @@ export class ReflectionArgument
         const parsed = argument.split("=");
         this.argument = {
             name: parsed[0].trim(),
-            hasDefaultValue: 1 < parsed.length,
             value: this.sanitize(parsed[1]),
+            hasDefaultValue: 1 < parsed.length,
         };
     }
 
@@ -46,7 +46,7 @@ export class ReflectionArgument
     }
 
     /**
-     * It returns the default value of the argument.
+     * Returns the default value of the argument.
      * 
      * @returns any
      */
@@ -117,7 +117,8 @@ export class ReflectionArgument
 
     /**
      * Removes the double- and single quotes from the beginning and the end of 
-     * the given string.
+     * the given string. If the passed value is undefined or null, it will 
+     * silently just return them without modification.
      * 
      * @param string value The value to be trimmed.
      * 
