@@ -21,7 +21,7 @@ export class ReflectionArgument
         this.argument = {
             name: parsed[0].trim(),
             hasDefaultValue: 1 < parsed.length,
-            value: this.trimSpaces(parsed[1]),
+            value: this.sanitize(parsed[1]),
         };
     }
 
@@ -47,17 +47,14 @@ export class ReflectionArgument
 
     /**
      * It returns the default value of the argument.
+     * 
+     * @returns any
      */
-    public defaultValue()
+    public defaultValue() : any
     {
         let value = this.argument.value;
-        if (this.isNullOrUndefined(value))
-            return this.sanitize(value);
-
-        value = this.trimQuotes(value);
-
-        if (this.isAnObject(value))
-            value = eval(`(${value})`);
+        if (value = this.trimQuotes(value))
+            return this.isAnObject(value) ? eval(`(${value})`) : value;
 
         return value;
     }
@@ -71,13 +68,16 @@ export class ReflectionArgument
      */
     protected sanitize(value) : undefined | null | any
     {
-        if (value === "undefined")
-            return undefined;
-
-        if (value === "null")
-            return null;
-
-        return value;
+        switch (value = this.trimSpaces(value)) {
+            case "undefined":
+                return undefined;
+            
+            case "null":
+                return null;
+            
+            default:
+                return value;
+        }
     }
 
     /**
@@ -121,10 +121,10 @@ export class ReflectionArgument
      * 
      * @param string value The value to be trimmed.
      * 
-     * @returns string
+     * @returns string|undefined|null
      */
-    protected trimQuotes(value: string) : string
+    protected trimQuotes(value: string) : string | undefined | null
     {
-        return value.replace(/^["']/, "").replace(/["']$/, "");
+        return value ? value.replace(/^["']/, "").replace(/["']$/, "") : value;
     }
 }
