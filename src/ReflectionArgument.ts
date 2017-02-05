@@ -64,9 +64,11 @@ export class ReflectionArgument
      * general empty values) to their respective, typesafe forms. If the value 
      * is anything but these two types, it will return it without modification.
      * 
+     * @param string|undefined value The value to sanitize.
+     * 
      * @return undefined|null|any
      */
-    protected sanitize(value: string) : undefined | null | any
+    protected sanitize(value: string | undefined) : undefined | null | any
     {
         switch (value = this.trimSpaces(value)) {
             case "undefined":
