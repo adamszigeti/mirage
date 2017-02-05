@@ -1,7 +1,7 @@
 import {chai, assert} from "../TestCase";
 import {ReflectionArgument} from "../../src/ReflectionArgument";
 
-describe.only("ReflectionArgument", () => {
+describe("ReflectionArgument", () => {
     describe(".name()", () => {
         it("Can give back the argument name", () => {
             let reflector = new ReflectionArgument("person = null");
