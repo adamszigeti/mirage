@@ -66,7 +66,7 @@ export class ReflectionArgument
      * 
      * @return undefined|null|any
      */
-    protected sanitize(value) : undefined | null | any
+    protected sanitize(value: string) : undefined | null | any
     {
         switch (value = this.trimSpaces(value)) {
             case "undefined":
