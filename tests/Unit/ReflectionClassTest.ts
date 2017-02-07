@@ -38,11 +38,21 @@ function assertContainsMethod(methods, needle) {
 }
 
 describe("ReflectionClass", () => {
-    describe(".construct()", () => {
+    describe.only(".construct()", () => {
         it("Can construct a class with required arguments", () => {
             let reflector = new ReflectionClass(Person);
 
             let person = reflector.construct("Adam", 23) as Person;
+
+            assert.equal(person.age, 23);
+            assert.equal(person.name, "Adam");
+            assert.instanceOf(person, Person);
+        });
+
+        it("Can construct a class with named argument list", () => {
+            let reflector = new ReflectionClass(Person);
+
+            let person = reflector.construct({age: 23, name: "Adam"}) as Person;
 
             assert.equal(person.age, 23);
             assert.equal(person.name, "Adam");
