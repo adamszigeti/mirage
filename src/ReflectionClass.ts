@@ -4,20 +4,24 @@ export class ReflectionClass
 {
     protected type;
     protected subject: Object;
+    protected constructorMethod: ReflectionMethod;
 
     public constructor(subject: any)
     {
         this.type = subject;
         this.subject = subject instanceof Function ? new subject : subject;
+        this.constructorMethod = new ReflectionMethod(this.subject, "constructor");
     }
 
     /**
      * Creates the subject with the passed arguments.
+     * 
+     * @returns Object
      */
     public construct(...args) : Object
     {
         if (this.type instanceof Function)
-            return new this.type(...args);
+            return this.constructorMethod.invoke(...args);
 
         throw new Error("Should not try to (re)construct an instance which already exists!");
     }
