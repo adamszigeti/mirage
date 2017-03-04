@@ -23,7 +23,6 @@ export class ReflectionMethod
 
   public arguments() : ReflectionArgument[]
   {
-    console.log(this.definition);
     let args = this.definition.match(this.matchingRule)[1];
     return this.purify(args.split(',')).map(arg => new ReflectionArgument(arg));
   }

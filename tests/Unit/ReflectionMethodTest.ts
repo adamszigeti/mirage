@@ -63,7 +63,7 @@ describe("ReflectionMethod", () => {
     });
   });
 
-  describe.only(".invoke()", () => {
+  describe(".invoke()", () => {
     it("Can invoke a constructor with named parameters - without them being properly ordered", () => {
       let reflector = new ReflectionMethod(new Person, "constructor");
 
@@ -86,7 +86,6 @@ describe("ReflectionMethod", () => {
       class A {
         public something: Object;
         constructor(something?: Object) {
-          console.log(something);
           this.something = something;
         }
       }
