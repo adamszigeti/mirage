@@ -3,7 +3,7 @@ A simple, incomlete, yet powerful reflection library for JavaScript.
 
 ## 1. About
 
-This is an experimental library to help me to discover the possibilitites of automatic Dependency Injection in JavaScript, similar to what you can find... well, basically in any other language. The conclusion of the experiment was that though it's somewhat possible to do so (with the combined strength of decorators and this library), it's really not a sensible thing to do in a production environment *this way*. I instead used a manual solution in my projects, which is much more performant in exchange for only a little more verbose initialization code at the toplevel.
+This is an experimental library to help me discover the possibilitites of automatic Dependency Injection in JavaScript, similar to what you can find... well, basically in any other language. The conclusion of the experiment was that though it's somewhat possible to do (with the combined strength of decorators and this library), it's really not a sensible thing to use in a production environment *that way*. I instead used a manual solution in my projects, which is much more performant in exchange for only a little more verbose initialization code at the toplevel, and the reliance on developer discipline.
 
 This library mainly uses JavaScript's built-in features (among important custom solutions to extend their capabilities), and creates an abstraction layer which makes them easier to use, without external dependencies. Despite the experiment's results, this library is perfectly capable on it's own, and after some ironing it might be usable in production.
 
